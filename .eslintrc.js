@@ -29,6 +29,12 @@ module.exports = {
       'js': 'never',
       'vue': 'never'
     }],
+    // allow param-reassign
+    'no-param-reassign': 0,
+    // allow bitwise
+    "no-bitwise": 0,
+    // allow mixed-operators
+    "no-mixed-operators": 0,
     // allow optionalDependencies
     'import/no-extraneous-dependencies': ['error', {
       'optionalDependencies': ['test/unit/index.js']

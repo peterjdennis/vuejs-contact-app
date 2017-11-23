@@ -48,6 +48,7 @@
 // COMPONENT LOGIC
 <script>
   import db from './firebaseInit';
+
   export default {
     name: 'new-contact', // matches the route we assigned
     data() {
@@ -55,37 +56,39 @@
         firstname: null,
         lastname: null,
         emailaddress: null,
-        phonenumber: null
-      }
+        phonenumber: null,
+      };
     },
 
     methods: {
-      saveContact () {
+      saveContact() {
         // adds an object to the contacts collection
         db.collection('contacts').add({
           firstname: this.firstname,
           lastname: this.lastname,
           emailaddress: this.emailaddress,
           phonenumber: this.phonenumber,
-          slug: this.generateUUID()
+          slug: this.generateUUID(),
         })
         .then((docRef) => {
           console.log(`Document written with ID: ${docRef.id}`);
         })
         .catch((error) => {
           console.error(`Error adding document: ${error}`);
-        })
+        });
       },
-      generateUUID () {
+      // will generate UUID
+      generateUUID() {
         let d = new Date().getTime();
-        let uuid = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
-          let r = (d + Math.random() * 16) % 16 | 0;
+        const uuid = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, (c) => {
+          const r = (d + Math.random() * 16) % 16 | 0;
           d = Math.floor(d / 16);
           return (c === 'x' ? r : (r & 0x3 | 0x8)).toString(16);
-        }
-      }
-    }
-  }
+        });
+        return uuid;
+      },
+    },
+  };
 </script>
 
 // COMPONENT STYLES
