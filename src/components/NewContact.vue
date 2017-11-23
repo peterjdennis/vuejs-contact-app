@@ -28,9 +28,9 @@
       </div>
 
       <div class="field">
-        <label for="phonenumber" class="label">Email Address</label>
+        <label for="phonenumber" class="label">Phone Number</label>
         <div class="control">
-          <input type="tel" class="input" placeholder="Email Address" v-model="emailaddress">
+          <input type="tel" class="input" placeholder="Phone Number" v-model="phonenumber">
         </div>
       </div>
 
@@ -71,9 +71,11 @@
           slug: this.generateUUID(),
         })
         .then((docRef) => {
+          // eslint-disable-next-line
           console.log(`Document written with ID: ${docRef.id}`);
         })
         .catch((error) => {
+          // eslint-disable-next-line
           console.error(`Error adding document: ${error}`);
         });
       },

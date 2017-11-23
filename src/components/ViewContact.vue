@@ -48,7 +48,6 @@
       fetchData() {
         db.collection('contacts').where('slug', '==', this.$route.params.person).get().then((querySnapshot) => {
           querySnapshot.forEach((doc) => {
-            console.log(doc.id, ' => ', doc.data());
             this.firstname = doc.data().firstname;
             this.lastname = doc.data().lastname;
             this.emailaddress = doc.data().emailaddress;
