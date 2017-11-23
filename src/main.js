@@ -13,3 +13,18 @@ new Vue({
   template: '<App/>',
   components: { App },
 });
+
+
+// <script src="https://www.gstatic.com/firebasejs/4.6.2/firebase.js"></script>
+// <script>
+//   // Initialize Firebase
+//   var config = {
+//     apiKey: "AIzaSyCiBaGK1_R7U-d_CQAx6su5OEsw6SZz-gE",
+//     authDomain: "vuejs-contact-app.firebaseapp.com",
+//     databaseURL: "https://vuejs-contact-app.firebaseio.com",
+//     projectId: "vuejs-contact-app",
+//     storageBucket: "",
+//     messagingSenderId: "131493489354"
+//   };
+//   firebase.initializeApp(config);
+// </script>
