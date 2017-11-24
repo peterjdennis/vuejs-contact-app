@@ -1,7 +1,7 @@
 <template>
   <section class="container">
- <div class="columns">
-      <div class="column is-8">
+    <div class="columns">
+      <div class="column is-three-fifths is-offset-one-fifth">
         <h1>All Contacts</h1>
 
         <div class="loader-section" v-if="loading">
@@ -64,15 +64,17 @@
               <p class="user-list__header">{{person.firstname}} {{person.lastname}}</p>
               <div class="inner">
                 <div class="left">
-                  <p class="user-list__sub"><strong>Email</strong>: {{person.emailaddress}}</p>
+                  <p class="user-list__sub">
+                    <strong>Email</strong>: {{person.emailaddress}}</p>
                 </div>
                 <div class="right">
-                  <p class="user-list__sub"><strong>Phone Number</strong>: {{person.phonenumber}}</p>
+                  <p class="user-list__sub">
+                    <strong>Phone Number</strong>: {{person.phonenumber}}</p>
                 </div>
               </div>
             </div>
             <div class="column is-4 right">
-              <router-link class="button is-primary" v-bind:to="{ name: 'view-contact', params: { person: person.slug }}">View Person</router-link>
+              <router-link class="button is-primary is-outlined" v-bind:to="{ name: 'view-contact', params: { person: person.slug }}">View Person</router-link>
             </div>
           </div>
         </div>
@@ -83,34 +85,35 @@
 </template>
 
 <script>
-import db from './firebaseInit';
+  import db from './firebaseInit';
 
-export default {
-  name: 'home',
-  data() {
-    return {
-      contacts: [],
-      loading: true,
-    };
-  },
-  created() {
-    // Get all contacts from firebase collection
-    db.collection('contacts').get().then((querySnapshot) => {
-      this.loading = false;
-      querySnapshot.forEach((doc) => {
-        const data = {
-          id: doc.id,
-          firstname: doc.data().firstname,
-          lastname: doc.data().lastname,
-          emailaddress: doc.data().emailaddress,
-          phonenumber: doc.data().phonenumber,
-          slug: doc.data().slug,
-        };
-        this.contacts.push(data);
+  export default {
+    name: 'home',
+    data() {
+      return {
+        contacts: [],
+        loading: true,
+      };
+    },
+    created() {
+      // Get all contacts from firebase collection
+      db.collection('contacts').get().then((querySnapshot) => {
+        this.loading = false;
+        querySnapshot.forEach((doc) => {
+          const data = {
+            id: doc.id,
+            firstname: doc.data().firstname,
+            lastname: doc.data().lastname,
+            emailaddress: doc.data().emailaddress,
+            phonenumber: doc.data().phonenumber,
+            slug: doc.data().slug,
+          };
+          this.contacts.push(data);
+        });
       });
-    });
-  },
-};
+    },
+  };
+
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
@@ -118,6 +121,10 @@ export default {
   h1 {
     font-size: 30px;
     margin: 30px 0;
+  }
+
+  header {
+    position: relative;
   }
 
   .user-list {
@@ -129,9 +136,9 @@ export default {
     .column {
       height: 120px;
     }
-    
+
     .inner {
-      
+
       .left {
         width: 50%;
         float: left;
@@ -162,7 +169,9 @@ export default {
     .user-list__header {
       font-size: 20px;
       font-weight: 700;
+      text-align: left;
     }
+
     .user-list__sub {
       font-size: 15px;
       margin-top: 10px;
